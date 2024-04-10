@@ -35,13 +35,13 @@ public class GUImanager {
         aktualniFrame.dispose();
         frame.show();
 }
-
-    public int getGUIManagerHodnota() {
-        return GUIManagerhodnota;
-    }
-
-    public void setGUIManagerHodnota(int hodnota) {
-        this.GUIManagerhodnota = hodnota;
-    }
+/* 
+    POZOR! Vím že funkce vysledkyFrame a dalsiFrame 
+    obsahují switch, který tam nemusí být ale když 
+    jsem se to pokusil přepsat tak mi to přestalo 
+    fungovat
     
+    Skore se nevipisuje spravne, zatim nevim kde je chyba
+*/
+
 }

@@ -15,12 +15,13 @@ import javax.swing.JFrame;
  *
  * @author drozd19100
  */
-public class Kviz extends javax.swing.JFrame {
+public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují otázky
 
     ArrayList<Otazka> data;
-    int indexAktOtazky=0;
+    int indexAktOtazky=0; //index otázky, aby kdyz dojdou otázky tak se zobrazila obrazovka s vysledky, viz. DalsiActionPerformed
     GUImanager manager = new GUImanager(); 
     int skore=0;
+    boolean otazkaspravneDalsi = false;
 
     public void setSkore(int skore) {
         this.skore = skore;
@@ -31,7 +32,7 @@ public class Kviz extends javax.swing.JFrame {
     public Kviz() {
         initComponents();
         
-        data = new ArrayList<Otazka>();
+        data = new ArrayList<Otazka>(); // pro nacitani otazek
         
         Scanner s =null;
         String radek;
@@ -39,12 +40,12 @@ public class Kviz extends javax.swing.JFrame {
         try { //zde se zapisuji otazky ze souboru do seznamu
             s = new Scanner(new FileInputStream("NacitaniOtazek.txt"));
         } 
-        catch(FileNotFoundException e) {
+        catch(FileNotFoundException e) { //pokud je soubor nefunkční
             System.out.println("soubor nenalezen");
             return;
         }
         
-        while(s.hasNextLine()) {
+        while(s.hasNextLine()) { // zde se načítá po řádcích 
             radek=s.nextLine();
             
             if(radek.startsWith("#")) {
@@ -177,16 +178,21 @@ public class Kviz extends javax.swing.JFrame {
 
     private void Odpoved1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved1ActionPerformed
       if (data.get(indexAktOtazky).odpovedi.get(0).spravne) {
-            skore += data.get(indexAktOtazky).getHodnota(); // Přidání hodnoty otázky k celkovému skóre
+            otazkaspravneDalsi = true;
         }
+      else {
+          otazkaspravneDalsi = false;
+      }
     }//GEN-LAST:event_Odpoved1ActionPerformed
 
     private void DalsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DalsiActionPerformed
         try {
+            if(otazkaspravneDalsi) {
+                skore += data.get(indexAktOtazky).getHodnota();
+            }            
             indexAktOtazky += 1;
             ZapisPomDoGUI(data.get(indexAktOtazky));
             buttonGroup1.clearSelection();
-            
         } catch (IndexOutOfBoundsException e) {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
@@ -202,14 +208,20 @@ public class Kviz extends javax.swing.JFrame {
     
     private void Odpoved2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved2ActionPerformed
        if (data.get(indexAktOtazky).odpovedi.get(0).spravne) {
-            skore += data.get(indexAktOtazky).getHodnota(); // Přidání hodnoty otázky k celkovému skóre
+            otazkaspravneDalsi = true;
         }
+      else {
+          otazkaspravneDalsi = false;
+      }
     }//GEN-LAST:event_Odpoved2ActionPerformed
 
     private void Odpoved3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved3ActionPerformed
         if (data.get(indexAktOtazky).odpovedi.get(0).spravne) {
-            skore += data.get(indexAktOtazky).getHodnota(); // Přidání hodnoty otázky k celkovému skóre
+            otazkaspravneDalsi = true;
         }
+      else {
+          otazkaspravneDalsi = false;
+      }
     }//GEN-LAST:event_Odpoved3ActionPerformed
 
     /**
