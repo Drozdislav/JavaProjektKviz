@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import javax.swing.JFrame;
 
 /**
  *
@@ -19,7 +18,6 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
 
     ArrayList<Otazka> data;
     int indexAktOtazky=0; //index otázky, aby kdyz dojdou otázky tak se zobrazila obrazovka s vysledky, viz. DalsiActionPerformed
-    GUImanager manager = new GUImanager(); 
     int skore=0;
     boolean otazkaspravneDalsi = false;
 
@@ -197,8 +195,7 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
     }
-    private void ZobrazNouObrazovku(int skore) {
-        gui.dalsiFrame(this, "Vysledky");
+    static { //toto mi ze záhadného důvodu nejde smazat
     }//GEN-LAST:event_DalsiActionPerformed
 
     private void ZobrazVysledky(int skore) {

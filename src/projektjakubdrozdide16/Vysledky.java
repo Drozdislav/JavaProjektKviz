@@ -66,16 +66,19 @@ public class Vysledky extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PocetBoduCislo)
-                .addGap(175, 175, 175))
+                .addGap(218, 218, 218))
             .addGroup(layout.createSequentialGroup()
                 .addGap(176, 176, 176)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(PocetBoduCislo)
+                            .addGap(14, 14, 14))
+                        .addComponent(PocetBoduText))
                     .addComponent(zkusZnovaTlacitko)
-                    .addComponent(PocetBoduText)
                     .addComponent(VysledkyNadpis))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
@@ -84,13 +87,13 @@ public class Vysledky extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(VysledkyNadpis)
-                .addGap(75, 75, 75)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PocetBoduText)
                 .addGap(18, 18, 18)
                 .addComponent(PocetBoduCislo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(91, 91, 91)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(zkusZnovaTlacitko)
                 .addGap(30, 30, 30))
         );
@@ -101,7 +104,7 @@ public class Vysledky extends javax.swing.JFrame {
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
         Kviz resetSkore = new Kviz();
         resetSkore.setSkore(0);
-        gui.dalsiFrame(this, "Kviz");
+        
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
     /**
