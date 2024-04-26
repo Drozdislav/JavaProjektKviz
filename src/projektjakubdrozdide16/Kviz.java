@@ -43,7 +43,7 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
             return;
         }
         
-        while(s.hasNextLine()) { // zde se načítá po řádcích 
+        while(s.hasNextLine()) { // zde se načítá po řádcích, vždy podle klicoveho slova na zacatku 
             radek=s.nextLine();
             
             if(radek.startsWith("#")) {
@@ -58,16 +58,21 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
             }
             
              if(radek.startsWith("Spravne:")) {
-                data.getLast().addOdpoved(new Odpoved(true, radek.substring(8)));
+                data.get(data.size()-1).addOdpoved(new Odpoved(true, radek.substring(8)));
              }
                 
              if(radek.startsWith("Spatne:")) {
-                data.getLast().addOdpoved(new Odpoved(false, radek.substring(7)));
+               data.get(data.size()-1).addOdpoved(new Odpoved(false, radek.substring(7)));
                  
             }
              
-             if(radek.startsWith("Hodnota:")) {
-                data.getLast().setHodnota(Integer.parseInt(radek.substring(8)));
+             if(radek.startsWith("Hodnota:")) { // nacita hodnotu, pokud to neprojde vypise error
+                 try {
+                 int hodnota = Integer.parseInt(radek.substring(8));
+                 data.get(data.size()-1).setHodnota(hodnota);
+                     } catch (NumberFormatException e) {
+                            System.err.println("Chyba při převodu hodnoty na číslo");
+    }
              }
             
         }
