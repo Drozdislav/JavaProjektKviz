@@ -1,0 +1,24 @@
+Nazev:Test VV 01
+Otazka 1zN:Ktera barva je nejlepší(Modra)?
+# TODO: Udělat si seznam barev od
+# nejlepší po nejhorší.
+Hodnota:5
+Spravne:Modra
+Spatne:Ruzova
+Spatne:Purpurova
+# najebat ctvrty moznosti
+Otazka 1zN:Ktery tvar je hranaty?
+Hodnota:10
+Spatne:Kruh
+Spravne:Ctverec
+Spatne:Elipsa
+Otazka 1zN:Kdo je nejvetsi bozo?
+Hodnota:10
+Spatne:Drozd
+Spravne:Buna
+Spatne:Koko
+Otazka 1zN:Kdo nema rad orisky?
+Hodnota:10
+Spatne:Drozd
+Spravne:Koko
+Spatne:Buna

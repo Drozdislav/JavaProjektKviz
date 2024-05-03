@@ -11,16 +11,19 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- *
+ *JFRAME ve kerém se zobrazují otázky
  * @author drozd19100
  */
-public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují otázky
+public class Kviz extends javax.swing.JFrame {
 
     ArrayList<Otazka> data;
     int indexAktOtazky=0; //index otázky, aby kdyz dojdou otázky tak se zobrazila obrazovka s vysledky, viz. DalsiActionPerformed
     int skore=0;
     boolean otazkaspravneDalsi = false;
-
+/**
+ * setter na skore
+ * @param skore 
+ */
     public void setSkore(int skore) {
         this.skore = skore;
     }
@@ -36,7 +39,7 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
         String radek;
         
         try { //zde se zapisuji otazky ze souboru do seznamu
-            s = new Scanner(new FileInputStream("NacitaniOtazek.txt"));
+            s = new Scanner(new FileInputStream("NacitaniOtazek2.txt"));
         } 
         catch(FileNotFoundException e) { //pokud je soubor nefunkční
             System.out.println("soubor nenalezen");
@@ -80,8 +83,11 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
         Collections.shuffle(data);
         this.ZapisPomDoGUI(data.get(0));
     }
-    
-     public void ZapisPomDoGUI(Otazka o) {// tato funkce zapisuje otazky ze seznamu do GUI
+    /**
+     * tato funkce zapisuje otazky ze seznamu do GUI
+     * @param o 
+     */
+     public void ZapisPomDoGUI(Otazka o) {
          Collections.shuffle(o.odpovedi);
          TextOtazky.setText(o.otazka);
          Odpoved1.setText(o.odpovedi.get(0).textOdpovedi);
@@ -104,7 +110,6 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
         Odpoved1 = new javax.swing.JRadioButton();
         Odpoved2 = new javax.swing.JRadioButton();
         Odpoved3 = new javax.swing.JRadioButton();
-        Dalsi = new javax.swing.JButton();
         NazevKvizu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -130,32 +135,24 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
             }
         });
 
-        Dalsi.setText("další");
-        Dalsi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DalsiActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(NazevKvizu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 294, Short.MAX_VALUE)
-                .addComponent(Dalsi)
-                .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Odpoved3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Odpoved2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Odpoved1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TextOtazky, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(NazevKvizu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Odpoved3, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                            .addComponent(Odpoved2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Odpoved1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TextOtazky, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(70, 70, 70)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -171,59 +168,73 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
                 .addComponent(Odpoved2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Odpoved3)
-                .addGap(29, 29, 29)
-                .addComponent(Dalsi)
-                .addGap(16, 16, 16))
+                .addGap(68, 68, 68))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Funkce která reaguje na zmáčknutí tlačítka 1
+ * @param evt 
+ */
     private void Odpoved1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved1ActionPerformed
-      if (data.get(indexAktOtazky).odpovedi.get(0).spravne) {
-            otazkaspravneDalsi = true;
-        }
-      else {
-          otazkaspravneDalsi = false;
-      }
-    }//GEN-LAST:event_Odpoved1ActionPerformed
-
-    private void DalsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DalsiActionPerformed
-        try {
+        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(0).spravne;
+      try {
             if(otazkaspravneDalsi) {
                 skore += data.get(indexAktOtazky).getHodnota();
-            }            
+            }
             indexAktOtazky += 1;
             ZapisPomDoGUI(data.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
-    }
-    static { //toto mi ze záhadného důvodu nejde smazat
-    }//GEN-LAST:event_DalsiActionPerformed
+        }
+        static { //toto mi ze záhadného důvodu nejde smazat
+    }//GEN-LAST:event_Odpoved1ActionPerformed
 
     private void ZobrazVysledky(int skore) {
         gui.vysledkyFrame(this, "Vysledky", skore);
     }                                     
     
-    
+    /**
+ * Funkce která reaguje na zmáčknutí tlačítka 2
+ * @param evt 
+ */
     private void Odpoved2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved2ActionPerformed
-       if (data.get(indexAktOtazky).odpovedi.get(0).spravne) {
-            otazkaspravneDalsi = true;
+        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(0).spravne;
+       try {
+            if(otazkaspravneDalsi) {
+                skore += data.get(indexAktOtazky).getHodnota();
+            }
+            indexAktOtazky += 1;
+            ZapisPomDoGUI(data.get(indexAktOtazky));
+            buttonGroup1.clearSelection();
+        } catch (IndexOutOfBoundsException e) {
+            ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
-      else {
-          otazkaspravneDalsi = false;
-      }
+        }
+        static { //toto mi ze záhadného důvodu nejde smazat
     }//GEN-LAST:event_Odpoved2ActionPerformed
 
+        /**
+ * Funkce která reaguje na zmáčknutí tlačítka 3
+ * @param evt 
+ */
     private void Odpoved3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved3ActionPerformed
-        if (data.get(indexAktOtazky).odpovedi.get(0).spravne) {
-            otazkaspravneDalsi = true;
+        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(0).spravne;
+        try {
+            if(otazkaspravneDalsi) {
+                skore += data.get(indexAktOtazky).getHodnota();
+            }
+            indexAktOtazky += 1;
+            ZapisPomDoGUI(data.get(indexAktOtazky));
+            buttonGroup1.clearSelection();
+        } catch (IndexOutOfBoundsException e) {
+            ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
-      else {
-          otazkaspravneDalsi = false;
-      }
+        }
+        static { //toto mi ze záhadného důvodu nejde smazat
     }//GEN-LAST:event_Odpoved3ActionPerformed
 
     /**
@@ -263,7 +274,6 @@ public class Kviz extends javax.swing.JFrame { //JFRAME ve kerém se zobrazují 
 
     GUImanager gui = new GUImanager();
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Dalsi;
     private javax.swing.JLabel NazevKvizu;
     private javax.swing.JRadioButton Odpoved1;
     private javax.swing.JRadioButton Odpoved2;

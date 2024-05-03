@@ -5,14 +5,13 @@
 package projektjakubdrozdide16;
 
 /**
- *
+ * Tato třída je umožňuje zobrazení výsledků kvízu
  * @author jakub
  */
 public class Vysledky extends javax.swing.JFrame {
 
     /**
-     * Creates new form Vysledky
-     * @param hodnota
+     * Vytvari novy form Vysledky
      */
     public Vysledky() {
         initComponents();
@@ -22,7 +21,10 @@ public class Vysledky extends javax.swing.JFrame {
         
        
     }
-
+/**
+ * Pro zobrazení vysledné obrazovky a vypsání finálního skóre
+ * @param hodnota 
+ */
     public Vysledky(int hodnota) {
         initComponents();
         
@@ -100,10 +102,14 @@ public class Vysledky extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * 
+ * @param evt 
+ */
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
-        Kviz resetSkore = new Kviz();
+        var resetSkore = new Kviz();
         resetSkore.setSkore(0);
+        gui.dalsiFrame(this, "Kviz");
         
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
