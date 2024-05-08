@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Otazka {
     String otazka;
     ArrayList<Odpoved> odpovedi = new ArrayList<Odpoved>();
-    String spravnaOdpoved;
     int hodnota;
 
     public void setHodnota(int hodnota) {
@@ -26,9 +25,6 @@ public class Otazka {
 
     //SETTERY
 
-    public void setSpravnaOdpoved(String spravnaOdpoved) {
-        this.spravnaOdpoved = spravnaOdpoved;
-    }
 
     public void setOtazka(String otazka) {
         this.otazka = otazka;
@@ -37,10 +33,6 @@ public class Otazka {
     //GETTERY
     public String getOtazka() {
         return otazka;
-    }
-
-    public String getSpravnaOdpoved() {
-        return spravnaOdpoved;
     }
     
     public void addOdpoved(Odpoved o) {

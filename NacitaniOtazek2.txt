@@ -22,3 +22,5 @@ Hodnota:10
 Spatne:Drozd
 Spravne:Koko
 Spatne:Buna
+Otazka Otevrena: Co je dneska za den?
+Spravne:Utery

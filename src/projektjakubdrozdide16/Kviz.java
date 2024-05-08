@@ -38,7 +38,7 @@ public class Kviz extends javax.swing.JFrame {
         Scanner s =null;
         String radek;
         
-        try { //zde se zapisuji otazky ze souboru do seznamu
+        try { //zde se otevírá soubor s otázkami
             s = new Scanner(new FileInputStream("NacitaniOtazek2.txt"));
         } 
         catch(FileNotFoundException e) { //pokud je soubor nefunkční
@@ -75,7 +75,7 @@ public class Kviz extends javax.swing.JFrame {
                  data.get(data.size()-1).setHodnota(hodnota);
                      } catch (NumberFormatException e) {
                             System.err.println("Chyba při převodu hodnoty na číslo");
-    }
+                }
              }
             
         }
@@ -111,6 +111,7 @@ public class Kviz extends javax.swing.JFrame {
         Odpoved2 = new javax.swing.JRadioButton();
         Odpoved3 = new javax.swing.JRadioButton();
         NazevKvizu = new javax.swing.JLabel();
+        odpovedOtevrenaOtazka = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +136,13 @@ public class Kviz extends javax.swing.JFrame {
             }
         });
 
+        odpovedOtevrenaOtazka.setText("jTextField1");
+        odpovedOtevrenaOtazka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                odpovedOtevrenaOtazkaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,6 +162,10 @@ public class Kviz extends javax.swing.JFrame {
                                 .addComponent(TextOtazky, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(185, 185, 185)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +180,9 @@ public class Kviz extends javax.swing.JFrame {
                 .addComponent(Odpoved2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Odpoved3)
-                .addGap(96, 96, 96))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
 
         pack();
@@ -202,7 +216,7 @@ public class Kviz extends javax.swing.JFrame {
  * @param evt 
  */
     private void Odpoved2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved2ActionPerformed
-        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(0).spravne;
+        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(1).spravne;
        try {
             if(otazkaspravneDalsi) {
                 skore += data.get(indexAktOtazky).getHodnota();
@@ -222,7 +236,7 @@ public class Kviz extends javax.swing.JFrame {
  * @param evt 
  */
     private void Odpoved3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved3ActionPerformed
-        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(0).spravne;
+        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(2).spravne;
         try {
             if(otazkaspravneDalsi) {
                 skore += data.get(indexAktOtazky).getHodnota();
@@ -236,6 +250,10 @@ public class Kviz extends javax.swing.JFrame {
         }
         static { //toto mi ze záhadného důvodu nejde smazat
     }//GEN-LAST:event_Odpoved3ActionPerformed
+
+    private void odpovedOtevrenaOtazkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odpovedOtevrenaOtazkaActionPerformed
+       
+    }//GEN-LAST:event_odpovedOtevrenaOtazkaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,5 +298,6 @@ public class Kviz extends javax.swing.JFrame {
     private javax.swing.JRadioButton Odpoved3;
     private javax.swing.JLabel TextOtazky;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField odpovedOtevrenaOtazka;
     // End of variables declaration//GEN-END:variables
 }
