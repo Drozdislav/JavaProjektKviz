@@ -15,11 +15,17 @@ import java.util.Scanner;
  * @author drozd19100
  */
 public class Kviz extends javax.swing.JFrame {
-
+    Scanner s =null;
     ArrayList<Otazka> data;
     int indexAktOtazky=0; //index otázky, aby kdyz dojdou otázky tak se zobrazila obrazovka s vysledky, viz. DalsiActionPerformed
     int skore=0;
     boolean otazkaspravneDalsi = false;
+    
+    /**
+     * Nacteni souboru text ktery je predany z tridy UvodniObrazovka.java
+     * @param Text 
+     */
+     
 /**
  * setter na skore
  * @param skore 
@@ -30,22 +36,15 @@ public class Kviz extends javax.swing.JFrame {
     /**
      * Creates new form Kviz
      */
-    public Kviz() {
+    public Kviz(Scanner s) {
         initComponents();
         
         data = new ArrayList<Otazka>(); // pro nacitani otazek
         
-        Scanner s =null;
+        
         String radek;
-        
-        try { //zde se otevírá soubor s otázkami
-            s = new Scanner(new FileInputStream("NacitaniOtazek2.txt"));
-        } 
-        catch(FileNotFoundException e) { //pokud je soubor nefunkční
-            System.out.println("soubor nenalezen");
-            return;
-        }
-        
+       
+       
         while(s.hasNextLine()) { // zde se načítá po řádcích, vždy podle klicoveho slova na zacatku 
             radek=s.nextLine();
             
@@ -83,6 +82,8 @@ public class Kviz extends javax.swing.JFrame {
         Collections.shuffle(data);
         this.ZapisPomDoGUI(data.get(0));
     }
+    
+    
     /**
      * tato funkce zapisuje otazky ze seznamu do GUI
      * @param o 
@@ -136,7 +137,6 @@ public class Kviz extends javax.swing.JFrame {
             }
         });
 
-        odpovedOtevrenaOtazka.setText("jTextField1");
         odpovedOtevrenaOtazka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 odpovedOtevrenaOtazkaActionPerformed(evt);
@@ -211,6 +211,7 @@ public class Kviz extends javax.swing.JFrame {
         gui.vysledkyFrame(this, "Vysledky", skore);
     }                                     
     
+    
     /**
  * Funkce která reaguje na zmáčknutí tlačítka 2
  * @param evt 
@@ -250,7 +251,7 @@ public class Kviz extends javax.swing.JFrame {
         }
         static { //toto mi ze záhadného důvodu nejde smazat
     }//GEN-LAST:event_Odpoved3ActionPerformed
-
+        
     private void odpovedOtevrenaOtazkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odpovedOtevrenaOtazkaActionPerformed
        
     }//GEN-LAST:event_odpovedOtevrenaOtazkaActionPerformed

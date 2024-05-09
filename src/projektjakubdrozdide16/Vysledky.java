@@ -109,7 +109,7 @@ public class Vysledky extends javax.swing.JFrame {
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
         var resetSkore = new Kviz();
         resetSkore.setSkore(0);
-        gui.dalsiFrame(this, "Kviz");
+        gui.dalsiFrame(this, "Kviz", s);
         
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 

@@ -111,9 +111,6 @@
     <Component class="javax.swing.JLabel" name="NazevKvizu">
     </Component>
     <Component class="javax.swing.JTextField" name="odpovedOtevrenaOtazka">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="odpovedOtevrenaOtazkaActionPerformed"/>
       </Events>
