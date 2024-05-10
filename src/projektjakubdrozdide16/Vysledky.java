@@ -4,12 +4,16 @@
  */
 package projektjakubdrozdide16;
 
+import java.util.ArrayList;
+
 /**
  * Tato třída je umožňuje zobrazení výsledků kvízu
  * @author jakub
  */
 public class Vysledky extends javax.swing.JFrame {
-
+UvodniObrazovka uo = new UvodniObrazovka();
+String NazevSouboruVysledky = uo.getNazevSouboru();
+ArrayList<Otazka> list = new ArrayList<>();
     /**
      * Vytvari novy form Vysledky
      */
@@ -107,10 +111,11 @@ public class Vysledky extends javax.swing.JFrame {
  * @param evt 
  */
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
-        var resetSkore = new Kviz();
+        FileReader fr = new FileReader();
+        list = fr.nactiOtazky(NazevSouboruVysledky);
+        var resetSkore = new Kviz(list);
         resetSkore.setSkore(0);
-        gui.dalsiFrame(this, "Kviz", s);
-        
+        gui.dalsiFrame(resetSkore, "Kviz");
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
     /**

@@ -11,17 +11,11 @@ import javax.swing.JFrame;
  * @author jakub
  */
 public class GUImanager {
-    int GUIManagerhodnota;
-    
-    public void dalsiFrame(JFrame aktualniFrame, String nazevFrame, Scanner s) {
-        JFrame frame = null;
-        frame = switch (nazevFrame) {
-                
-            default -> new Kviz(s);
-        };
+    public void dalsiFrame(JFrame aktualniFrame, String nazevFrame) {
+
         
         aktualniFrame.dispose();
-        frame.show();
+        aktualniFrame.show();
         
     }
     

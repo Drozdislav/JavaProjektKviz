@@ -16,10 +16,11 @@ import java.util.Scanner;
  */
 public class Kviz extends javax.swing.JFrame {
     Scanner s =null;
-    ArrayList<Otazka> data;
+    ArrayList<Otazka> list;
     int indexAktOtazky=0; //index otázky, aby kdyz dojdou otázky tak se zobrazila obrazovka s vysledky, viz. DalsiActionPerformed
     int skore=0;
     boolean otazkaspravneDalsi = false;
+     FileReader fr = new FileReader();
     
     /**
      * Nacteni souboru text ktery je predany z tridy UvodniObrazovka.java
@@ -35,52 +36,13 @@ public class Kviz extends javax.swing.JFrame {
     }
     /**
      * Creates new form Kviz
+     * @param data
      */
-    public Kviz(Scanner s) {
+    public Kviz(ArrayList<Otazka> data) {
         initComponents();
-        
-        data = new ArrayList<Otazka>(); // pro nacitani otazek
-        
-        
-        String radek;
-       
-       
-        while(s.hasNextLine()) { // zde se načítá po řádcích, vždy podle klicoveho slova na zacatku 
-            radek=s.nextLine();
-            
-            if(radek.startsWith("#")) {
-                radek=s.nextLine();
-            }
-            if(radek.startsWith("Nazev:")) {
-                NazevKvizu.setText(radek.substring(6));
-            }
-            
-            if(radek.startsWith("Otazka 1zN:")) {
-                data.add(new Otazka(radek.substring(11)));
-            }
-            
-             if(radek.startsWith("Spravne:")) {
-                data.get(data.size()-1).addOdpoved(new Odpoved(true, radek.substring(8)));
-             }
-                
-             if(radek.startsWith("Spatne:")) {
-               data.get(data.size()-1).addOdpoved(new Odpoved(false, radek.substring(7)));
-                 
-            }
-             
-             if(radek.startsWith("Hodnota:")) { // nacita hodnotu, pokud to neprojde vypise error
-                 try {
-                 int hodnota = Integer.parseInt(radek.substring(8));
-                 data.get(data.size()-1).setHodnota(hodnota);
-                     } catch (NumberFormatException e) {
-                            System.err.println("Chyba při převodu hodnoty na číslo");
-                }
-             }
-            
-        }
-        
-        Collections.shuffle(data);
-        this.ZapisPomDoGUI(data.get(0));
+        list = data;
+        Collections.shuffle(list);
+        this.ZapisPomDoGUI(list.get(0));
     }
     
     
@@ -192,13 +154,13 @@ public class Kviz extends javax.swing.JFrame {
  * @param evt 
  */
     private void Odpoved1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved1ActionPerformed
-        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(0).spravne;
+        otazkaspravneDalsi = list.get(indexAktOtazky).odpovedi.get(0).spravne;
       try {
             if(otazkaspravneDalsi) {
-                skore += data.get(indexAktOtazky).getHodnota();
+                skore += list.get(indexAktOtazky).getHodnota();
             }
             indexAktOtazky += 1;
-            ZapisPomDoGUI(data.get(indexAktOtazky));
+            ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
@@ -217,13 +179,13 @@ public class Kviz extends javax.swing.JFrame {
  * @param evt 
  */
     private void Odpoved2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved2ActionPerformed
-        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(1).spravne;
+        otazkaspravneDalsi = list.get(indexAktOtazky).odpovedi.get(1).spravne;
        try {
             if(otazkaspravneDalsi) {
-                skore += data.get(indexAktOtazky).getHodnota();
+                skore += list.get(indexAktOtazky).getHodnota();
             }
             indexAktOtazky += 1;
-            ZapisPomDoGUI(data.get(indexAktOtazky));
+            ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
@@ -237,13 +199,13 @@ public class Kviz extends javax.swing.JFrame {
  * @param evt 
  */
     private void Odpoved3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved3ActionPerformed
-        otazkaspravneDalsi = data.get(indexAktOtazky).odpovedi.get(2).spravne;
+        otazkaspravneDalsi = list.get(indexAktOtazky).odpovedi.get(2).spravne;
         try {
             if(otazkaspravneDalsi) {
-                skore += data.get(indexAktOtazky).getHodnota();
+                skore += list.get(indexAktOtazky).getHodnota();
             }
             indexAktOtazky += 1;
-            ZapisPomDoGUI(data.get(indexAktOtazky));
+            ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
@@ -255,41 +217,6 @@ public class Kviz extends javax.swing.JFrame {
     private void odpovedOtevrenaOtazkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odpovedOtevrenaOtazkaActionPerformed
        
     }//GEN-LAST:event_odpovedOtevrenaOtazkaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Kviz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Kviz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Kviz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Kviz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Kviz().setVisible(true);
-            }
-        });
-    }
 
     GUImanager gui = new GUImanager();
     // Variables declaration - do not modify//GEN-BEGIN:variables

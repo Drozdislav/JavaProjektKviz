@@ -27,25 +27,20 @@
               <EmptySpace pref="104" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+                      <Component id="VyberSouboruLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="NacistSouborTlacitko" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="StartTlacitko" min="-2" max="-2" attributes="0"/>
-                                  <Component id="VyberSouboruLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <Component id="VyberSouboruText" min="-2" pref="240" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="NacistSouborTlacitko" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -62,9 +57,7 @@
               <Component id="VyberSouboruText" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="NacistSouborTlacitko" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="66" max="32767" attributes="0"/>
-              <Component id="StartTlacitko" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace pref="147" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,14 +67,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Drozdova &#xda;&#x17e;asn&#xe1; Kv&#xed;zov&#xe1; Aplikace"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="StartTlacitko">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Start"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StartTlacitkoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="VyberSouboruText">
       <Events>
@@ -95,7 +80,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="NacistSouborTlacitko">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Na&#x10d;&#xed;st Soubor"/>
+        <Property name="text" type="java.lang.String" value="Na&#x10d;&#xed;st Soubor a Spustit Kv&#xed;z"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NacistSouborTlacitkoActionPerformed"/>
