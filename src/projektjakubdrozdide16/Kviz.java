@@ -4,23 +4,18 @@
  */
 package projektjakubdrozdide16;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 /**
  *JFRAME ve kerém se zobrazují otázky
  * @author drozd19100
  */
 public class Kviz extends javax.swing.JFrame {
-    Scanner s =null;
     ArrayList<Otazka> list;
     int indexAktOtazky=0; //index otázky, aby kdyz dojdou otázky tak se zobrazila obrazovka s vysledky, viz. DalsiActionPerformed
     int skore=0;
     boolean otazkaspravneDalsi = false;
-     FileReader fr = new FileReader();
     
     /**
      * Nacteni souboru text ktery je predany z tridy UvodniObrazovka.java

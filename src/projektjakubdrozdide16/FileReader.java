@@ -17,11 +17,15 @@ public class FileReader {
     String NazevKvizu;
     String radek;
     
-    public ArrayList<Otazka> nactiOtazky(String soubor) {
+    public ArrayList<Otazka> nactiOtazky(String soubor) throws EmptyFileException {
         ArrayList<Otazka> data = new ArrayList<>();
         try {
             Scanner s = new Scanner(new FileInputStream(soubor + ".txt"));
             while(s.hasNextLine()) { // zde se načítá po řádcích, vždy podle klicoveho slova na zacatku 
+            if(s.nextLine() == null) {
+                throw new EmptyFileException();
+                
+            }
             radek=s.nextLine();
             
             if(radek.startsWith("#")) {
