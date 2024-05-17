@@ -5,8 +5,8 @@
 package projektjakubdrozdide16;
 
 /**
- *
- * @author jakub
+ * 
+ * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class Odpoved { // v této třídě se rozebírá odpoved, využívá se při načtení a výpisu odpovedi
     boolean spravne;

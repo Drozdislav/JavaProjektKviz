@@ -5,7 +5,6 @@
 package projektjakubdrozdide16;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -19,6 +18,11 @@ public class UvodniObrazovka extends javax.swing.JFrame {
     GUImanager gui = new GUImanager();
     ArrayList<Otazka> list = new ArrayList<>();
     String NazevSouboru;
+    String JmenoUzivatele;
+
+    public String getJmenoUzivatele() {
+        return JmenoUzivatele;
+    }
 
     public String getNazevSouboru() {
         return NazevSouboru;
@@ -44,6 +48,8 @@ public class UvodniObrazovka extends javax.swing.JFrame {
         VyberSouboruText = new javax.swing.JTextField();
         VyberSouboruLabel = new javax.swing.JLabel();
         NacistSouborTlacitko = new javax.swing.JButton();
+        JmenoUzivateleTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +70,8 @@ public class UvodniObrazovka extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Jméno uživatele:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,11 +86,15 @@ public class UvodniObrazovka extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(97, 97, 97))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(VyberSouboruText, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(NacistSouborTlacitko)
-                        .addGap(87, 87, 87))))
+                        .addGap(91, 91, 91))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(VyberSouboruText, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                .addComponent(JmenoUzivateleTextField)))
+                        .addGap(56, 56, 56))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,8 +106,12 @@ public class UvodniObrazovka extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VyberSouboruText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JmenoUzivateleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(NacistSouborTlacitko)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,6 +120,7 @@ public class UvodniObrazovka extends javax.swing.JFrame {
     private void NacistSouborTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NacistSouborTlacitkoActionPerformed
         FileReader fr = new FileReader();
         NazevSouboru = VyberSouboruText.getText();
+        JmenoUzivatele = JmenoUzivateleTextField.getText();
         try {
             list = fr.nactiOtazky(NazevSouboru);
         } catch (EmptyFileException ex) {
@@ -168,9 +185,11 @@ public class UvodniObrazovka extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JmenoUzivateleTextField;
     private javax.swing.JButton NacistSouborTlacitko;
     private javax.swing.JLabel VyberSouboruLabel;
     private javax.swing.JTextField VyberSouboruText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,7 @@
+--CO JE TREBA DODELAT--
+
+- opravit zkusZnovaTlacitko
+- tabulka vysledku
+- vice typu otazek
+- chyba formatu dat
+- zamichat varianty otazek

@@ -37,6 +37,7 @@ public class Kviz extends javax.swing.JFrame {
         initComponents();
         list = data;
         Collections.shuffle(list);
+        ProgressBarKviz.setMaximum(list.size());
         this.ZapisPomDoGUI(list.get(0));
     }
     
@@ -70,6 +71,7 @@ public class Kviz extends javax.swing.JFrame {
         Odpoved3 = new javax.swing.JRadioButton();
         NazevKvizu = new javax.swing.JLabel();
         odpovedOtevrenaOtazka = new javax.swing.JTextField();
+        ProgressBarKviz = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,8 +123,13 @@ public class Kviz extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ProgressBarKviz, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +146,9 @@ public class Kviz extends javax.swing.JFrame {
                 .addComponent(Odpoved3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(35, 35, 35)
+                .addComponent(ProgressBarKviz, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -200,6 +209,8 @@ public class Kviz extends javax.swing.JFrame {
                 skore += list.get(indexAktOtazky).getHodnota();
             }
             indexAktOtazky += 1;
+            ProgressBarKviz.setValue(indexAktOtazky);
+            
             ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
@@ -219,6 +230,7 @@ public class Kviz extends javax.swing.JFrame {
     private javax.swing.JRadioButton Odpoved1;
     private javax.swing.JRadioButton Odpoved2;
     private javax.swing.JRadioButton Odpoved3;
+    private javax.swing.JProgressBar ProgressBarKviz;
     private javax.swing.JLabel TextOtazky;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField odpovedOtevrenaOtazka;

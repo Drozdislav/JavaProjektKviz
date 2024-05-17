@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Tato třída je umožňuje zobrazení výsledků kvízu
- * @author jakub
+ * @author
  */
 public class Vysledky extends javax.swing.JFrame {
 UvodniObrazovka uo = new UvodniObrazovka();
@@ -111,11 +111,12 @@ ArrayList<Otazka> list = new ArrayList<>();
  * @param evt 
  */
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
+        /*
         FileReader fr = new FileReader();
         list = fr.nactiOtazky(NazevSouboruVysledky);
         var resetSkore = new Kviz(list);
         resetSkore.setSkore(0);
-        gui.dalsiFrame(resetSkore, "Kviz");
+        gui.dalsiFrame(resetSkore, "Kviz"); */
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
     /**

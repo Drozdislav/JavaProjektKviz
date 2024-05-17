@@ -6,9 +6,10 @@ package projektjakubdrozdide16;
 
 import javax.swing.JFrame;
 
+
 /**
- *
- * @author jakub
+ * 
+ * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class GUImanager {
     public void dalsiFrame(JFrame aktualniFrame, String nazevFrame) {

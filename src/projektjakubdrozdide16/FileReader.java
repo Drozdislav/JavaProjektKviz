@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
- * @author jakub
+ * 
+ * @author drozd19100
  */
 public class FileReader {
     String NazevKvizu;
@@ -21,47 +21,50 @@ public class FileReader {
         ArrayList<Otazka> data = new ArrayList<>();
         try {
             Scanner s = new Scanner(new FileInputStream(soubor + ".txt"));
-            while(s.hasNextLine()) { // zde se načítá po řádcích, vždy podle klicoveho slova na zacatku 
-            if(s.nextLine() == null) {
-                throw new EmptyFileException();
+            boolean isEmpty = true;
+
+            while (s.hasNextLine()) {
+                String radek = s.nextLine().trim();
                 
-            }
-            radek=s.nextLine();
-            
-            if(radek.startsWith("#")) {
-                radek=s.nextLine();
-            }
-            if(radek.startsWith("Nazev:")) {
-                NazevKvizu = (radek.substring(6));
-            }
-            
-            if(radek.startsWith("Otazka 1zN:")) {
-                data.add(new Otazka(radek.substring(11)));
-            }
-            
-             if(radek.startsWith("Spravne:")) {
-                data.get(data.size()-1).addOdpoved(new Odpoved(true, radek.substring(8)));
-             }
-                
-             if(radek.startsWith("Spatne:")) {
-               data.get(data.size()-1).addOdpoved(new Odpoved(false, radek.substring(7)));
-                 
-            }
-             
-             if(radek.startsWith("Hodnota:")) { // nacita hodnotu, pokud to neprojde vypise error
-                 try {
-                 int hodnota = Integer.parseInt(radek.substring(8));
-                 data.get(data.size()-1).setHodnota(hodnota);
-                     } catch (NumberFormatException e) {
-                            System.err.println("Chyba při převodu hodnoty na číslo");
+                // Check for empty file
+                if (isEmpty && !radek.isEmpty()) {
+                    isEmpty = false;
                 }
-             }
-            
-        }
+
+                // Skip comment lines
+                if (radek.startsWith("#")) {
+                    continue;
+                }
+
+                // Process different types of lines
+                if (radek.startsWith("Nazev:")) {
+                    String nazevKvizu = radek.substring(6).trim();
+                    System.out.println("Nazev Kvizu: " + nazevKvizu); // Handle the quiz name as needed
+                } else if (radek.startsWith("Otazka 1zN:")) {
+                    data.add(new Otazka(radek.substring(11).trim()));
+                } else if (radek.startsWith("Spravne:")) {
+                    data.get(data.size() - 1).addOdpoved(new Odpoved(true, radek.substring(8).trim()));
+                } else if (radek.startsWith("Spatne:")) {
+                    data.get(data.size() - 1).addOdpoved(new Odpoved(false, radek.substring(7).trim()));
+                } else if (radek.startsWith("Hodnota:")) {
+                    try {
+                        int hodnota = Integer.parseInt(radek.substring(8).trim());
+                        data.get(data.size() - 1).setHodnota(hodnota);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Chyba při převodu hodnoty na číslo: " + radek.substring(8).trim());
+                    }
+                }
+            }
+
+            if (isEmpty) {
+                throw new EmptyFileException();
+            }
+
             s.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Soubor nenalezen: " + e.getMessage());
+            System.err.println("Soubor nenalezen: " + e.getMessage());
         }
+
         return data;
     }
     
