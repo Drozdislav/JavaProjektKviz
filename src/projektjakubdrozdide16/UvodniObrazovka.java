@@ -19,6 +19,8 @@ public class UvodniObrazovka extends javax.swing.JFrame {
     ArrayList<Otazka> list = new ArrayList<>();
     String NazevSouboru;
     String JmenoUzivatele;
+    ArrayList<VysledkyTabulka> vysledkyList = new ArrayList<>();
+    VysledkyTabulka vt = new VysledkyTabulka();
 
     public String getJmenoUzivatele() {
         return JmenoUzivatele;
