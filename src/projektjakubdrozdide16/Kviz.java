@@ -6,6 +6,7 @@ package projektjakubdrozdide16;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JLabel;
 
 /**
  *JFRAME ve kerém se zobrazují otázky
@@ -16,6 +17,10 @@ public class Kviz extends javax.swing.JFrame {
     int indexAktOtazky=0; //index otázky, aby kdyz dojdou otázky tak se zobrazila obrazovka s vysledky, viz. DalsiActionPerformed
     int skore=0;
     boolean otazkaspravneDalsi = false;
+    String nazevKvizu;
+    FileReader fr = new FileReader();
+
+
     
     /**
      * Nacteni souboru text ktery je predany z tridy UvodniObrazovka.java
@@ -170,6 +175,7 @@ public class Kviz extends javax.swing.JFrame {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
         }
+    
         static { //toto mi ze záhadného důvodu nejde smazat
     }//GEN-LAST:event_Odpoved1ActionPerformed
 

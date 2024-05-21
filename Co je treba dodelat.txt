@@ -5,3 +5,4 @@
 - vice typu otazek
 - chyba formatu dat
 - zamichat varianty otazek
+- setnout nazev kvizu do jLabelu

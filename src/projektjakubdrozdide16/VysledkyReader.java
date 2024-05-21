@@ -30,11 +30,6 @@ public ArrayList<VysledkyTabulka> nactiOtazky() throws EmptyFileException {
                 if (isEmpty && !radek.isEmpty()) {
                     isEmpty = false;
                 }
-
-                // Skip comment lines
-                if (radek.startsWith("#")) {
-                    continue;
-                }
                 
                 if(radek.startsWith("1.")) {
                     data.add(new VysledkyTabulka(radek.substring(2).trim()));

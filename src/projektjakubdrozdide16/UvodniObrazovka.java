@@ -72,6 +72,12 @@ public class UvodniObrazovka extends javax.swing.JFrame {
             }
         });
 
+        JmenoUzivateleTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmenoUzivateleTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Jméno uživatele:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,6 +127,7 @@ public class UvodniObrazovka extends javax.swing.JFrame {
 
     private void NacistSouborTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NacistSouborTlacitkoActionPerformed
         FileReader fr = new FileReader();
+        
         NazevSouboru = VyberSouboruText.getText();
         JmenoUzivatele = JmenoUzivateleTextField.getText();
         try {
@@ -139,6 +146,10 @@ public class UvodniObrazovka extends javax.swing.JFrame {
     private void VyberSouboruTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VyberSouboruTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_VyberSouboruTextActionPerformed
+
+    private void JmenoUzivateleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmenoUzivateleTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JmenoUzivateleTextFieldActionPerformed
     /**
      * @autor
      */

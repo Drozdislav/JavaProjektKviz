@@ -5,6 +5,8 @@
 package projektjakubdrozdide16;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Tato třída je umožňuje zobrazení výsledků kvízu
@@ -111,12 +113,25 @@ ArrayList<Otazka> list = new ArrayList<>();
  * @param evt 
  */
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
-        /*
+         // Load questions from file
         FileReader fr = new FileReader();
+    try {
         list = fr.nactiOtazky(NazevSouboruVysledky);
-        var resetSkore = new Kviz(list);
-        resetSkore.setSkore(0);
-        gui.dalsiFrame(resetSkore, "Kviz"); */
+    } catch (EmptyFileException ex) {
+        Logger.getLogger(Vysledky.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+        // Create a new quiz frame with the questions
+        Kviz novyKviz = new Kviz(list);
+        
+        // Set the initial score to 0
+        novyKviz.setSkore(0);
+        
+        // Display the quiz frame
+        gui.dalsiFrame(novyKviz, "Kviz");
+        
+        // Close the current results frame
+        this.dispose();
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
     /**

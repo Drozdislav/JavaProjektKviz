@@ -17,6 +17,7 @@ public class FileReader {
     String NazevKvizu;
     String radek;
     
+    
     public ArrayList<Otazka> nactiOtazky(String soubor) throws EmptyFileException {
         ArrayList<Otazka> data = new ArrayList<>();
         try {
@@ -31,15 +32,14 @@ public class FileReader {
                     isEmpty = false;
                 }
 
-                // Skip comment lines
+                
                 if (radek.startsWith("#")) {
                     continue;
                 }
 
-                // Process different types of lines
+                
                 if (radek.startsWith("Nazev:")) {
                     String nazevKvizu = radek.substring(6).trim();
-                    System.out.println("Nazev Kvizu: " + nazevKvizu); // Handle the quiz name as needed
                 } else if (radek.startsWith("Otazka 1zN:")) {
                     data.add(new Otazka(radek.substring(11).trim()));
                 } else if (radek.startsWith("Spravne:")) {
