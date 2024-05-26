@@ -3,6 +3,6 @@
 - opravit zkusZnovaTlacitko
 - tabulka vysledku
 - vice typu otazek
+    - zamichat varianty otazek
 - chyba formatu dat
-- zamichat varianty otazek
 - setnout nazev kvizu do jLabelu

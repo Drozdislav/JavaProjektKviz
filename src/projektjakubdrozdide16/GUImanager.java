@@ -24,7 +24,7 @@ public class GUImanager {
         JFrame frame = null;
         frame = switch (nazevFrame) {
                 
-            default -> new Vysledky(skore);
+            default -> new Vysledky(skore, aktualniFrame);
         };
         
         aktualniFrame.dispose();

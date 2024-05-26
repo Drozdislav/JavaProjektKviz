@@ -7,6 +7,7 @@ package projektjakubdrozdide16;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  * Tato třída je umožňuje zobrazení výsledků kvízu
@@ -16,6 +17,8 @@ public class Vysledky extends javax.swing.JFrame {
 UvodniObrazovka uo = new UvodniObrazovka();
 String NazevSouboruVysledky = uo.getNazevSouboru();
 ArrayList<Otazka> list = new ArrayList<>();
+JFrame KvizZnovaFrame;
+
     /**
      * Vytvari novy form Vysledky
      */
@@ -30,12 +33,14 @@ ArrayList<Otazka> list = new ArrayList<>();
 /**
  * Pro zobrazení vysledné obrazovky a vypsání finálního skóre
  * @param hodnota 
+     * @param KvizFrame 
  */
-    public Vysledky(int hodnota) {
+    public Vysledky(int hodnota, JFrame KvizFrame) {
         initComponents();
-        
+        KvizZnovaFrame = KvizFrame;
         
         PocetBoduCislo.setText(String.valueOf(hodnota));
+        
         
        
     }
@@ -113,22 +118,12 @@ ArrayList<Otazka> list = new ArrayList<>();
  * @param evt 
  */
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
-         // Load questions from file
-        FileReader fr = new FileReader();
-    try {
-        list = fr.nactiOtazky(NazevSouboruVysledky);
-    } catch (EmptyFileException ex) {
-        Logger.getLogger(Vysledky.class.getName()).log(Level.SEVERE, null, ex);
-    }
-        
-        // Create a new quiz frame with the questions
-        Kviz novyKviz = new Kviz(list);
-        
+
         // Set the initial score to 0
-        novyKviz.setSkore(0);
+        // KvizZnovaFrame.setSkore(0);
         
         // Display the quiz frame
-        gui.dalsiFrame(novyKviz, "Kviz");
+       // gui.dalsiFrame(novyKviz, "Kviz");
         
         // Close the current results frame
         this.dispose();
@@ -176,4 +171,5 @@ ArrayList<Otazka> list = new ArrayList<>();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton zkusZnovaTlacitko;
     // End of variables declaration//GEN-END:variables
+
 }

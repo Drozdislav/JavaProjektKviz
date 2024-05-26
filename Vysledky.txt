@@ -1,3 +1,6 @@
-1. Jakub 30
-2. Buna 20
-3. Koko 10
+1.Jakub
+skore:30
+2.Buna
+skore:20
+3.Koko
+skore:10

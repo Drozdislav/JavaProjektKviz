@@ -34,6 +34,11 @@ public class Kviz extends javax.swing.JFrame {
     public void setSkore(int skore) {
         this.skore = skore;
     }
+    
+    
+    public Kviz() {
+        
+    }
     /**
      * Creates new form Kviz
      * @param data
