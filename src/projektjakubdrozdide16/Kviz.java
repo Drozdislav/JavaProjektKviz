@@ -13,6 +13,7 @@ import javax.swing.JLabel;
  * @author drozd19100
  */
 public class Kviz extends javax.swing.JFrame {
+    GUImanager gui = new GUImanager();
     ArrayList<Otazka> list;
     int indexAktOtazky=0; //index otázky, aby kdyz dojdou otázky tak se zobrazila obrazovka s vysledky, viz. DalsiActionPerformed
     int skore=0;
@@ -27,12 +28,13 @@ public class Kviz extends javax.swing.JFrame {
      * @param Text 
      */
      
-/**
- * setter na skore
- * @param skore 
- */
+    /**
+     * setter na skore
+     * @param skore 
+     */
     public void setSkore(int skore) {
         this.skore = skore;
+        this.indexAktOtazky = 0;
     }
     
     
@@ -64,6 +66,9 @@ public class Kviz extends javax.swing.JFrame {
          Odpoved3.setText(o.odpovedi.get(2).textOdpovedi);
     }
      
+    private void ZobrazVysledky(int skore) {
+        gui.vysledkyFrame(this, "Vysledky", skore);
+    }                                     
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,13 +168,13 @@ public class Kviz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**
- * Funkce která reaguje na zmáčknutí tlačítka 1
- * @param evt 
- */
+    /**
+     * Funkce která reaguje na zmáčknutí tlačítka 1
+     * @param evt 
+     */
     private void Odpoved1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved1ActionPerformed
         otazkaspravneDalsi = list.get(indexAktOtazky).odpovedi.get(0).spravne;
-      try {
+        try {
             if(otazkaspravneDalsi) {
                 skore += list.get(indexAktOtazky).getHodnota();
             }
@@ -179,20 +184,14 @@ public class Kviz extends javax.swing.JFrame {
         } catch (IndexOutOfBoundsException e) {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
-        }
-    
-        static { //toto mi ze záhadného důvodu nejde smazat
+    }
+        static {
     }//GEN-LAST:event_Odpoved1ActionPerformed
 
-    private void ZobrazVysledky(int skore) {
-        gui.vysledkyFrame(this, "Vysledky", skore);
-    }                                     
-    
-    
     /**
- * Funkce která reaguje na zmáčknutí tlačítka 2
- * @param evt 
- */
+    * Funkce která reaguje na zmáčknutí tlačítka 2
+    * @param evt 
+    */
     private void Odpoved2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved2ActionPerformed
         otazkaspravneDalsi = list.get(indexAktOtazky).odpovedi.get(1).spravne;
        try {
@@ -205,14 +204,14 @@ public class Kviz extends javax.swing.JFrame {
         } catch (IndexOutOfBoundsException e) {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
-        }
+    }
         static { //toto mi ze záhadného důvodu nejde smazat
     }//GEN-LAST:event_Odpoved2ActionPerformed
 
-        /**
- * Funkce která reaguje na zmáčknutí tlačítka 3
- * @param evt 
- */
+    /**
+    * Funkce která reaguje na zmáčknutí tlačítka 3
+    * @param evt 
+    */
     private void Odpoved3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Odpoved3ActionPerformed
         otazkaspravneDalsi = list.get(indexAktOtazky).odpovedi.get(2).spravne;
         try {
@@ -227,7 +226,7 @@ public class Kviz extends javax.swing.JFrame {
         } catch (IndexOutOfBoundsException e) {
             ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
         }
-        }
+    }
         static { //toto mi ze záhadného důvodu nejde smazat
     }//GEN-LAST:event_Odpoved3ActionPerformed
         
@@ -235,7 +234,6 @@ public class Kviz extends javax.swing.JFrame {
        
     }//GEN-LAST:event_odpovedOtevrenaOtazkaActionPerformed
 
-    GUImanager gui = new GUImanager();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NazevKvizu;
     private javax.swing.JRadioButton Odpoved1;

@@ -12,15 +12,15 @@ import javax.swing.JFrame;
  * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class GUImanager {
-    public void dalsiFrame(JFrame aktualniFrame, String nazevFrame) {
+    public void dalsiFrame(Kviz aktualniFrame, String nazevFrame) {
 
         
         aktualniFrame.dispose();
-        aktualniFrame.show();
+        aktualniFrame.setVisible(true);
         
     }
     
-    public void vysledkyFrame(JFrame aktualniFrame, String nazevFrame, int skore) {
+    public void vysledkyFrame(Kviz aktualniFrame, String nazevFrame, int skore) {
         JFrame frame = null;
         frame = switch (nazevFrame) {
                 
@@ -28,7 +28,7 @@ public class GUImanager {
         };
         
         aktualniFrame.dispose();
-        frame.show();
+        frame.setVisible(true);
 }
 /* 
     POZOR! Vím že funkce vysledkyFrame a dalsiFrame 
