@@ -20,7 +20,7 @@ public class GUImanager {
         
     }
     
-    public void vysledkyFrame(Kviz aktualniFrame, String nazevFrame, int skore) {
+    public void vysledkyFrame(Kviz aktualniFrame, String nazevFrame, int skore) throws EmptyFileException {
         JFrame frame = null;
         frame = switch (nazevFrame) {
                 

@@ -17,7 +17,7 @@ public class VysledkyReader {
 
     
     
-public ArrayList<VysledkyTabulka> nactiOtazky() throws EmptyFileException {
+public ArrayList<VysledkyTabulka> nactiVysledkyTabulka() throws EmptyFileException {
         ArrayList<VysledkyTabulka> data = new ArrayList<>();
         try {
             Scanner s = new Scanner(new FileInputStream("Vysledky.txt"));
@@ -31,39 +31,7 @@ public ArrayList<VysledkyTabulka> nactiOtazky() throws EmptyFileException {
                     isEmpty = false;
                 }
                 
-                if(radek.startsWith("1.")) {
-                    data.add(new VysledkyTabulka(radek.substring(2).trim()));
-                }
-                
-                else if (radek.startsWith("skore:")) {
-                    try {
-                        data.add(new VysledkyTabulka(Integer.parseInt(radek.substring(6).trim())));
-                    } catch (NumberFormatException e) {
-                        System.err.println("Chyba při převodu hodnoty na číslo: " + radek.substring(8).trim());
-                    }
-                }
-                else if(radek.startsWith("2.")) {
-                    data.add(new VysledkyTabulka(radek.substring(2).trim()));
-                }
-                
-                else if (radek.startsWith("skore:")) {
-                    try {
-                        data.add(new VysledkyTabulka(Integer.parseInt(radek.substring(6).trim())));
-                    } catch (NumberFormatException e) {
-                        System.err.println("Chyba při převodu hodnoty na číslo: " + radek.substring(8).trim());
-                    }
-                }
-                else if(radek.startsWith("3.")) {
-                    data.add(new VysledkyTabulka(radek.substring(2).trim()));
-                }
-                
-                else if (radek.startsWith("skore:")) {
-                    try {
-                        data.add(new VysledkyTabulka(Integer.parseInt(radek.substring(6).trim())));
-                    } catch (NumberFormatException e) {
-                        System.err.println("Chyba při převodu hodnoty na číslo: " + radek.substring(8).trim());
-                    }
-                }
+                data.add(new VysledkyTabulka(radek.split(";")[0], Integer.parseInt(radek.split(";")[1])));
             }
 
             if (isEmpty) {

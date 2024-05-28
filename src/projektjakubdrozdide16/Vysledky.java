@@ -6,9 +6,7 @@ package projektjakubdrozdide16;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
+import java.util.Comparator;
 
 /**
  * Tato třída je umožňuje zobrazení výsledků kvízu
@@ -16,10 +14,12 @@ import javax.swing.JFrame;
  */
 public class Vysledky extends javax.swing.JFrame {
     GUImanager gui = new GUImanager();
+    VysledkyReader vr = new VysledkyReader();
     UvodniObrazovka uo = new UvodniObrazovka();
     String NazevSouboruVysledky = uo.getNazevSouboru();
     ArrayList<Otazka> list = new ArrayList<>();
     Kviz KvizZnovaFrame;
+    int skoreUzivatele;
 
     /**
      * Vytvari novy form Vysledky
@@ -32,9 +32,12 @@ public class Vysledky extends javax.swing.JFrame {
      * @param hodnota 
          * @param KvizFrame 
      */
-    public Vysledky(int hodnota, Kviz KvizFrame) {
+    public Vysledky(int hodnota, Kviz KvizFrame) throws EmptyFileException {
         initComponents();
+        setSkoreUzivatele(hodnota);
+        nastavVysledkyTOP3();
         KvizZnovaFrame = KvizFrame;
+        
         
         PocetBoduCislo.setText(String.valueOf(hodnota));
         
@@ -158,9 +161,32 @@ public class Vysledky extends javax.swing.JFrame {
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
     
-    public void nastavVysledkyTOP3 () {
-        
+    public void nastavVysledkyTOP3 () throws EmptyFileException {
+       ArrayList<VysledkyTabulka> seznamVysledky = new ArrayList<>();
+       seznamVysledky = vr.nactiVysledkyTabulka();
+       
+       String currentUzivatel = uo.getJmenoUzivatele();
+       
+       seznamVysledky.add(new VysledkyTabulka(currentUzivatel,skoreUzivatele));
+       
+       Collections.sort(seznamVysledky, new Comparator<VysledkyTabulka>() {
+            @Override
+            public int compare(VysledkyTabulka v1, VysledkyTabulka v2) {
+                return Integer.compare(v2.getSkoreUzivatele(), v1.getSkoreUzivatele());
+            }
+        });
+       
+       prvniMisto.setText("1. " + seznamVysledky.get(0).JmenoUzivatele + ": " + seznamVysledky.get(0).skoreUzivatele);
+       druheMisto.setText("2. " + seznamVysledky.get(1).JmenoUzivatele + ": " + seznamVysledky.get(1).skoreUzivatele);
+       tretiMisto.setText("3. " + seznamVysledky.get(2).JmenoUzivatele + ": " + seznamVysledky.get(2).skoreUzivatele);
     }
+
+    public void setSkoreUzivatele(int skoreUzivatele) {
+        this.skoreUzivatele = skoreUzivatele;
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */

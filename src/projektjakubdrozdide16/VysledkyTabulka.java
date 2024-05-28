@@ -12,13 +12,14 @@ public class VysledkyTabulka {
     String JmenoUzivatele;
     int skoreUzivatele;
 
-    public VysledkyTabulka(String JmenoUzivatele) {
+    public VysledkyTabulka(String JmenoUzivatele, int skoreUzivatele) {
         this.JmenoUzivatele = JmenoUzivatele;
-    }
-
-    public VysledkyTabulka(int skoreUzivatele) {
         this.skoreUzivatele = skoreUzivatele;
     }
+
+    public int getSkoreUzivatele() {
+        return skoreUzivatele;
+    }    
 
     public VysledkyTabulka() {
     }
