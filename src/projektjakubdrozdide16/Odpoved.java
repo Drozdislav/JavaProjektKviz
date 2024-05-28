@@ -16,4 +16,9 @@ public class Odpoved { // v této třídě se rozebírá odpoved, využívá se 
         this.spravne = spravne;
         this.textOdpovedi = textOdpovedi;
     }
+
+    public boolean isSpravne() {
+        return spravne;
+    }
+
 }

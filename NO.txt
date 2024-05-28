@@ -17,6 +17,9 @@ Hodnota:10
 Spatne:Drozd
 Spravne:Buna
 Spatne:Koko
+Otevrena Otazka:Co byl za den 28.5. 2024?
+Spravne:utery
+Hodnota:10
 Otazka 1zN:Kdo nema rad orisky?
 Hodnota:10
 Spatne:Drozd

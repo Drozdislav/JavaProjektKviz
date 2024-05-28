@@ -47,5 +47,14 @@ public class Otazka {
         return hodnota;
     }
 
-    
+    public int getTypOtazky() {
+        long countSpatne = odpovedi.stream().filter(o -> !o.isSpravne()).count();
+        if (countSpatne == 2) {
+            return 1;
+        } 
+        else    {
+            return 2;
+        }
+    }
 }
+

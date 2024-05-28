@@ -1,8 +1,12 @@
 --CO JE TREBA DODELAT--
 
-- opravit zkusZnovaTlacitko
+
 - tabulka vysledku
-- vice typu otazek
-    - zamichat varianty otazek
+    - funkce nastavVysledkyTOP3 ktera nastavuje veci do JLabelu
 - chyba formatu dat
 - setnout nazev kvizu do jLabelu
+
+
+- X vice typu otazek
+    - X zamichat varianty otazek
+- X opravit zkusZnovaTlacitko

@@ -6,24 +6,22 @@ package projektjakubdrozdide16;
 
 /**
  *
- * @author Jakub Drozd <drozd19100@zak.gvid.cz>
+ * @author drozd19100
  */
 public class VysledkyTabulka {
     String JmenoUzivatele;
-    int skore;
+    int skoreUzivatele;
 
     public VysledkyTabulka(String JmenoUzivatele) {
         this.JmenoUzivatele = JmenoUzivatele;
     }
 
-    public VysledkyTabulka(int skore) {
-        this.skore = skore;
+    public VysledkyTabulka(int skoreUzivatele) {
+        this.skoreUzivatele = skoreUzivatele;
     }
 
     public VysledkyTabulka() {
     }
     
     
-
 }
-

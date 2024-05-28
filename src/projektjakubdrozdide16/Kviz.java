@@ -4,6 +4,7 @@
  */
 package projektjakubdrozdide16;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JLabel;
@@ -20,7 +21,7 @@ public class Kviz extends javax.swing.JFrame {
     boolean otazkaspravneDalsi = false;
     String nazevKvizu;
     FileReader fr = new FileReader();
-
+    
 
     
     /**
@@ -50,7 +51,42 @@ public class Kviz extends javax.swing.JFrame {
         list = data;
         Collections.shuffle(list);
         ProgressBarKviz.setMaximum(list.size());
+        
+        NazevKvizu.setText(fr.getNazevKvizu()); //NEFUGNUJE DIGGA!!!
         this.ZapisPomDoGUI(list.get(0));
+        
+            this.addComponentListener(new java.awt.event.ComponentAdapter() {
+        public void componentResized(java.awt.event.ComponentEvent evt) {
+            resizeText();
+        }
+    });
+    }
+    
+    private void resizeText() {
+    int frameWidth = this.getWidth();
+    int frameHeight = this.getHeight();
+
+    float baseWidth = 400f; // Původní šířka rámu při návrhu
+    float baseHeight = 300f; // Původní výška rámu při návrhu
+
+    float widthRatio = frameWidth / baseWidth;
+    float heightRatio = frameHeight / baseHeight;
+
+    float newFontSize = 14f * Math.min(widthRatio, heightRatio); // Základní velikost písma 14
+
+    Font newFont = NazevKvizu.getFont().deriveFont(newFontSize);
+    NazevKvizu.setFont(newFont);
+    TextOtazky.setFont(newFont);
+    Odpoved1.setFont(newFont);
+    Odpoved2.setFont(newFont);
+    Odpoved3.setFont(newFont);
+    odpovedOtevrenaOtazka.setFont(newFont);
+}
+
+
+    public void resetProgressBar(int n) {
+        ProgressBarKviz.setValue(n);
+        buttonGroup1.clearSelection();
     }
     
     
@@ -60,10 +96,27 @@ public class Kviz extends javax.swing.JFrame {
      */
      public void ZapisPomDoGUI(Otazka o) {
          Collections.shuffle(o.odpovedi);
-         TextOtazky.setText(o.otazka);
-         Odpoved1.setText(o.odpovedi.get(0).textOdpovedi);
-         Odpoved2.setText(o.odpovedi.get(1).textOdpovedi);
-         Odpoved3.setText(o.odpovedi.get(2).textOdpovedi);
+    TextOtazky.setText(o.otazka);
+
+    int typOtazky = o.getTypOtazky();
+    
+    if (typOtazky == 2) { // otevřená otázka
+        Odpoved1.setVisible(false);
+        Odpoved2.setVisible(false);
+        Odpoved3.setVisible(false);
+        dalsiButton.setVisible(true);
+        odpovedOtevrenaOtazka.setVisible(true);
+    } else { // jedna ze tří
+        Odpoved1.setVisible(true);
+        Odpoved2.setVisible(true);
+        Odpoved3.setVisible(true);
+        dalsiButton.setVisible(false);
+        odpovedOtevrenaOtazka.setVisible(false);
+
+        Odpoved1.setText(o.odpovedi.get(0).textOdpovedi);
+        Odpoved2.setText(o.odpovedi.get(1).textOdpovedi);
+        Odpoved3.setText(o.odpovedi.get(2).textOdpovedi);
+    }
     }
      
     private void ZobrazVysledky(int skore) {
@@ -87,6 +140,7 @@ public class Kviz extends javax.swing.JFrame {
         NazevKvizu = new javax.swing.JLabel();
         odpovedOtevrenaOtazka = new javax.swing.JTextField();
         ProgressBarKviz = new javax.swing.JProgressBar();
+        dalsiButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,41 +171,52 @@ public class Kviz extends javax.swing.JFrame {
             }
         });
 
+        dalsiButton.setText("Další");
+        dalsiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dalsiButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(NazevKvizu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Odpoved3, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-                            .addComponent(Odpoved2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Odpoved1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(TextOtazky, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(185, 185, 185)))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ProgressBarKviz, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(ProgressBarKviz, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(156, 156, 156))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(dalsiButton)
+                                .addGap(39, 39, 39))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(NazevKvizu, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Odpoved3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Odpoved2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Odpoved1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(TextOtazky, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(NazevKvizu, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NazevKvizu, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(TextOtazky, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Odpoved1)
@@ -159,9 +224,11 @@ public class Kviz extends javax.swing.JFrame {
                 .addComponent(Odpoved2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Odpoved3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(dalsiButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProgressBarKviz, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -179,6 +246,7 @@ public class Kviz extends javax.swing.JFrame {
                 skore += list.get(indexAktOtazky).getHodnota();
             }
             indexAktOtazky += 1;
+            ProgressBarKviz.setValue(indexAktOtazky);
             ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
@@ -199,6 +267,7 @@ public class Kviz extends javax.swing.JFrame {
                 skore += list.get(indexAktOtazky).getHodnota();
             }
             indexAktOtazky += 1;
+            ProgressBarKviz.setValue(indexAktOtazky);
             ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
@@ -234,6 +303,25 @@ public class Kviz extends javax.swing.JFrame {
        
     }//GEN-LAST:event_odpovedOtevrenaOtazkaActionPerformed
 
+    private void dalsiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dalsiButtonActionPerformed
+    String userOdpoved = odpovedOtevrenaOtazka.getText();
+    Otazka aktualniOtazka = list.get(indexAktOtazky);
+
+    if (aktualniOtazka.getTypOtazky() == 2) { // otevřená otázka
+        if (userOdpoved.equals(aktualniOtazka.odpovedi.get(0).textOdpovedi)) {
+            skore += aktualniOtazka.getHodnota();
+        }
+        indexAktOtazky += 1;
+        ProgressBarKviz.setValue(indexAktOtazky);
+        odpovedOtevrenaOtazka.setText("");
+        try {
+            ZapisPomDoGUI(list.get(indexAktOtazky));
+        } catch (IndexOutOfBoundsException e) {
+            ZobrazVysledky(skore);
+        }
+    }
+    }//GEN-LAST:event_dalsiButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NazevKvizu;
     private javax.swing.JRadioButton Odpoved1;
@@ -242,6 +330,7 @@ public class Kviz extends javax.swing.JFrame {
     private javax.swing.JProgressBar ProgressBarKviz;
     private javax.swing.JLabel TextOtazky;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton dalsiButton;
     private javax.swing.JTextField odpovedOtevrenaOtazka;
     // End of variables declaration//GEN-END:variables
 }

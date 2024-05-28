@@ -53,12 +53,16 @@ public class Vysledky extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         PocetBoduCislo = new javax.swing.JLabel();
         zkusZnovaTlacitko = new javax.swing.JButton();
+        prvniMisto = new javax.swing.JLabel();
+        druheMisto = new javax.swing.JLabel();
+        tretiMisto = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         VysledkyNadpis.setText("Výsledky:");
 
-        PocetBoduText.setText("Počet Bodů:");
+        PocetBoduText.setText("Vaše skóre:");
 
         PocetBoduCislo.setText("jLabel2");
 
@@ -69,26 +73,44 @@ public class Vysledky extends javax.swing.JFrame {
             }
         });
 
+        prvniMisto.setText("jLabel2");
+
+        druheMisto.setText("jLabel3");
+
+        tretiMisto.setText("jLabel4");
+
+        jLabel5.setText("TOP 3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(218, 218, 218))
             .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(PocetBoduCislo)
-                            .addGap(14, 14, 14))
-                        .addComponent(PocetBoduText))
-                    .addComponent(zkusZnovaTlacitko)
-                    .addComponent(VysledkyNadpis))
-                .addContainerGap(142, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(PocetBoduText)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(12, 12, 12)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(PocetBoduCislo))
+                                    .addGap(14, 14, 14)))
+                            .addComponent(zkusZnovaTlacitko)
+                            .addComponent(VysledkyNadpis)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(druheMisto)
+                            .addComponent(prvniMisto, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(tretiMisto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(137, 137, 137)))))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,9 +121,17 @@ public class Vysledky extends javax.swing.JFrame {
                 .addComponent(PocetBoduText)
                 .addGap(18, 18, 18)
                 .addComponent(PocetBoduCislo)
-                .addGap(91, 91, 91)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(prvniMisto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(druheMisto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tretiMisto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(zkusZnovaTlacitko)
                 .addGap(30, 30, 30))
         );
@@ -118,6 +148,7 @@ public class Vysledky extends javax.swing.JFrame {
         KvizZnovaFrame.setSkore(0);
         Collections.shuffle(KvizZnovaFrame.list);
         KvizZnovaFrame.ZapisPomDoGUI(KvizZnovaFrame.list.get(0));
+        KvizZnovaFrame.resetProgressBar(0);
         
         //Display the quiz frame
         gui.dalsiFrame(KvizZnovaFrame, "Kviz");
@@ -126,6 +157,10 @@ public class Vysledky extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
+    
+    public void nastavVysledkyTOP3 () {
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -165,7 +200,11 @@ public class Vysledky extends javax.swing.JFrame {
     private javax.swing.JLabel PocetBoduCislo;
     private javax.swing.JLabel PocetBoduText;
     private javax.swing.JLabel VysledkyNadpis;
+    private javax.swing.JLabel druheMisto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel prvniMisto;
+    private javax.swing.JLabel tretiMisto;
     private javax.swing.JButton zkusZnovaTlacitko;
     // End of variables declaration//GEN-END:variables
 

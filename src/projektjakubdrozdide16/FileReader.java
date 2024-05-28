@@ -39,7 +39,7 @@ public class FileReader {
 
                 
                 if (radek.startsWith("Nazev:")) {
-                    String nazevKvizu = radek.substring(6).trim();
+                    NazevKvizu = radek.substring(6).trim();
                 } else if (radek.startsWith("Otazka 1zN:")) {
                     data.add(new Otazka(radek.substring(11).trim()));
                 } else if (radek.startsWith("Spravne:")) {
@@ -54,6 +54,24 @@ public class FileReader {
                         System.err.println("Chyba při převodu hodnoty na číslo: " + radek.substring(8).trim());
                     }
                 }
+                else if (radek.startsWith("Otevrena Otazka")) {
+                    data.add(new Otazka(radek.substring(16).trim()));
+                }
+                
+                else if (radek.startsWith("Spravne:")) {
+                    data.get(data.size() - 1).addOdpoved(new Odpoved(true, radek.substring(8).trim()));
+                }
+                else if (radek.startsWith("Hodnota:")) {
+                    try {
+                        int hodnota = Integer.parseInt(radek.substring(8).trim());
+                        data.get(data.size() - 1).setHodnota(hodnota);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Chyba při převodu hodnoty na číslo: " + radek.substring(8).trim());
+                    }
+                } else {
+                    System.out.println("Chybný formát dat!!!!");
+                }
+                
             }
 
             if (isEmpty) {
