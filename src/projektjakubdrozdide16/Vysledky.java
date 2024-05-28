@@ -5,6 +5,7 @@
 package projektjakubdrozdide16;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -14,35 +15,29 @@ import javax.swing.JFrame;
  * @author
  */
 public class Vysledky extends javax.swing.JFrame {
-UvodniObrazovka uo = new UvodniObrazovka();
-String NazevSouboruVysledky = uo.getNazevSouboru();
-ArrayList<Otazka> list = new ArrayList<>();
-JFrame KvizZnovaFrame;
+    GUImanager gui = new GUImanager();
+    UvodniObrazovka uo = new UvodniObrazovka();
+    String NazevSouboruVysledky = uo.getNazevSouboru();
+    ArrayList<Otazka> list = new ArrayList<>();
+    Kviz KvizZnovaFrame;
 
     /**
      * Vytvari novy form Vysledky
      */
     public Vysledky() {
-        initComponents();
-        
-        
-        
-        
-       
+        initComponents();       
     }
-/**
- * Pro zobrazení vysledné obrazovky a vypsání finálního skóre
- * @param hodnota 
-     * @param KvizFrame 
- */
-    public Vysledky(int hodnota, JFrame KvizFrame) {
+    /**
+     * Pro zobrazení vysledné obrazovky a vypsání finálního skóre
+     * @param hodnota 
+         * @param KvizFrame 
+     */
+    public Vysledky(int hodnota, Kviz KvizFrame) {
         initComponents();
         KvizZnovaFrame = KvizFrame;
         
         PocetBoduCislo.setText(String.valueOf(hodnota));
         
-        
-       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,17 +108,19 @@ JFrame KvizZnovaFrame;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**
- * 
- * @param evt 
- */
+    /**
+     * 
+     * @param evt 
+     */
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
 
         // Set the initial score to 0
-        // KvizZnovaFrame.setSkore(0);
+        KvizZnovaFrame.setSkore(0);
+        Collections.shuffle(KvizZnovaFrame.list);
+        KvizZnovaFrame.ZapisPomDoGUI(KvizZnovaFrame.list.get(0));
         
-        // Display the quiz frame
-       // gui.dalsiFrame(novyKviz, "Kviz");
+        //Display the quiz frame
+        gui.dalsiFrame(KvizZnovaFrame, "Kviz");
         
         // Close the current results frame
         this.dispose();
@@ -163,7 +160,7 @@ JFrame KvizZnovaFrame;
             }
         });
     }
- GUImanager gui = new GUImanager();
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PocetBoduCislo;
     private javax.swing.JLabel PocetBoduText;

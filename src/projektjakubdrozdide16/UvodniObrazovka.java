@@ -7,7 +7,6 @@ package projektjakubdrozdide16;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -140,7 +139,12 @@ public class UvodniObrazovka extends javax.swing.JFrame {
         VyberSouboruLabel.setText("Soubor nenačten");
         Kviz resetSkore = new Kviz(list);
         resetSkore.setSkore(0);
-        gui.dalsiFrame(resetSkore, "Kviz");
+        try {
+            gui.dalsiFrame(resetSkore, "Kviz");
+        } catch (Exception e) {
+            // Handle all types of exceptions
+            System.out.println("An error occurred: " + e.getMessage());
+        }
         this.dispose();
     }//GEN-LAST:event_NacistSouborTlacitkoActionPerformed
 
