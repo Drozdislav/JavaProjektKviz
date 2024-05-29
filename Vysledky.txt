@@ -1,3 +1,3 @@
-Jakub;30
-Buna;20
-Koko;10
+Jakub Drozd;45
+drozd;30
+gay;20

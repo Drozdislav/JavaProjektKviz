@@ -35,7 +35,7 @@ public class Vysledky extends javax.swing.JFrame {
     public Vysledky(int hodnota, Kviz KvizFrame) throws EmptyFileException {
         initComponents();
         setSkoreUzivatele(hodnota);
-        nastavVysledkyTOP3();
+        nastavVysledkyTOP3(KvizFrame);
         KvizZnovaFrame = KvizFrame;
         
         
@@ -161,11 +161,11 @@ public class Vysledky extends javax.swing.JFrame {
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
     
-    public void nastavVysledkyTOP3 () throws EmptyFileException {
+    public void nastavVysledkyTOP3 (Kviz KvizZnova) throws EmptyFileException {
        ArrayList<VysledkyTabulka> seznamVysledky = new ArrayList<>();
        seznamVysledky = vr.nactiVysledkyTabulka();
        
-       String currentUzivatel = uo.getJmenoUzivatele();
+       String currentUzivatel = KvizZnova.getJmenoUzivatele();
        
        seznamVysledky.add(new VysledkyTabulka(currentUzivatel,skoreUzivatele));
        
@@ -179,6 +179,9 @@ public class Vysledky extends javax.swing.JFrame {
        prvniMisto.setText("1. " + seznamVysledky.get(0).JmenoUzivatele + ": " + seznamVysledky.get(0).skoreUzivatele);
        druheMisto.setText("2. " + seznamVysledky.get(1).JmenoUzivatele + ": " + seznamVysledky.get(1).skoreUzivatele);
        tretiMisto.setText("3. " + seznamVysledky.get(2).JmenoUzivatele + ": " + seznamVysledky.get(2).skoreUzivatele);
+       
+        VysledkyWriter writer = new VysledkyWriter();
+        writer.zapisVysledkyTabulka(seznamVysledky);
     }
 
     public void setSkoreUzivatele(int skoreUzivatele) {

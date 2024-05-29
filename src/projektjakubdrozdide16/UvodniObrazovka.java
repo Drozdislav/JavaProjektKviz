@@ -139,6 +139,7 @@ public class UvodniObrazovka extends javax.swing.JFrame {
         VyberSouboruLabel.setText("Soubor nenačten");
         Kviz resetSkore = new Kviz(list);
         resetSkore.setSkore(0);
+        resetSkore.setJmenoUzivatele(JmenoUzivatele);
         try {
             gui.dalsiFrame(resetSkore, "Kviz");
         } catch (Exception e) {

@@ -4,11 +4,27 @@
  */
 package projektjakubdrozdide16;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+
 /**
- *
+ * Vysledky writer zapisuji top 3 vysledky do souboru
  * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class VysledkyWriter {
-    UvodniObrazovka uo = new UvodniObrazovka();
-    String Uzivatel = uo.getJmenoUzivatele();
+    
+    public void zapisVysledkyTabulka(ArrayList<VysledkyTabulka> data) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Vysledky.txt")))) {
+            for (int i = 0; i < Math.min(3, data.size()); i++) {
+                VysledkyTabulka vysledek = data.get(i);
+                writer.write(vysledek.JmenoUzivatele + ";" + vysledek.skoreUzivatele);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Chyba při zápisu do souboru: " + e.getMessage());
+        }
+    }
 }

@@ -1,12 +1,14 @@
 --CO JE TREBA DODELAT--
 
 
-- tabulka vysledku
-    - funkce nastavVysledkyTOP3 ktera nastavuje veci do JLabelu
+- opravit jmeno ve vysledkyTabulka
 - chyba formatu dat
 - setnout nazev kvizu do jLabelu
 
 
+
+ - X tabulka vysledku
+    - X funkce nastavVysledkyTOP3 ktera nastavuje veci do JLabelu
 - X vice typu otazek
     - X zamichat varianty otazek
 - X opravit zkusZnovaTlacitko

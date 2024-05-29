@@ -7,6 +7,8 @@ package projektjakubdrozdide16;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -20,7 +22,19 @@ public class Kviz extends javax.swing.JFrame {
     int skore=0;
     boolean otazkaspravneDalsi = false;
     String nazevKvizu;
+    String jmenoUzivatele;
     FileReader fr = new FileReader();
+      
+      
+      
+    public void setJmenoUzivatele(String jmenoUzivatele) {
+        this.jmenoUzivatele = jmenoUzivatele;
+    }
+
+    public String getJmenoUzivatele() {
+        return jmenoUzivatele;
+    }
+  
     
 
     
@@ -119,7 +133,7 @@ public class Kviz extends javax.swing.JFrame {
     }
     }
      
-    private void ZobrazVysledky(int skore) {
+    private void ZobrazVysledky(int skore) throws EmptyFileException {
         gui.vysledkyFrame(this, "Vysledky", skore);
     }                                     
     
@@ -250,7 +264,11 @@ public class Kviz extends javax.swing.JFrame {
             ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
-            ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
+            try {
+                ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
+            } catch (EmptyFileException ex) {
+                Logger.getLogger(Kviz.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
         static {
@@ -271,7 +289,11 @@ public class Kviz extends javax.swing.JFrame {
             ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
-            ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
+            try {
+                ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
+            } catch (EmptyFileException ex) {
+                Logger.getLogger(Kviz.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
         static { //toto mi ze záhadného důvodu nejde smazat
@@ -293,7 +315,11 @@ public class Kviz extends javax.swing.JFrame {
             ZapisPomDoGUI(list.get(indexAktOtazky));
             buttonGroup1.clearSelection();
         } catch (IndexOutOfBoundsException e) {
-            ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
+            try {
+                ZobrazVysledky(skore); // Při vyčerpání otázek předejte celkové skóre
+            } catch (EmptyFileException ex) {
+                Logger.getLogger(Kviz.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
         static { //toto mi ze záhadného důvodu nejde smazat
@@ -317,7 +343,11 @@ public class Kviz extends javax.swing.JFrame {
         try {
             ZapisPomDoGUI(list.get(indexAktOtazky));
         } catch (IndexOutOfBoundsException e) {
-            ZobrazVysledky(skore);
+            try {
+                ZobrazVysledky(skore);
+            } catch (EmptyFileException ex) {
+                Logger.getLogger(Kviz.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     }//GEN-LAST:event_dalsiButtonActionPerformed
