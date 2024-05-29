@@ -5,8 +5,8 @@
 package projektjakubdrozdide16;
 
 /**
- *
- * @author drozd19100
+ * třída používaná k ukládání tabulky výsledků
+ * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class VysledkyTabulka {
     String JmenoUzivatele;

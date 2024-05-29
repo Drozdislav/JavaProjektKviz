@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * Tato třída je umožňuje zobrazení výsledků kvízu
- * @author
+ * Třída zobrazující obrazovku s výsledky
+ * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class Vysledky extends javax.swing.JFrame {
     GUImanager gui = new GUImanager();
@@ -22,7 +22,7 @@ public class Vysledky extends javax.swing.JFrame {
     int skoreUzivatele;
 
     /**
-     * Vytvari novy form Vysledky
+     * Prázdný konstruktor
      */
     public Vysledky() {
         initComponents();       
@@ -142,7 +142,7 @@ public class Vysledky extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * 
+     * tlačítko reagující na stisknutí tlačítka zkusit znovu
      * @param evt 
      */
     private void zkusZnovaTlacitkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zkusZnovaTlacitkoActionPerformed
@@ -160,7 +160,11 @@ public class Vysledky extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_zkusZnovaTlacitkoActionPerformed
 
-    
+    /**
+     * metoda která nastavuje tabulku vysledků
+     * @param KvizZnova
+     * @throws EmptyFileException 
+     */
     public void nastavVysledkyTOP3 (Kviz KvizZnova) throws EmptyFileException {
        ArrayList<VysledkyTabulka> seznamVysledky = new ArrayList<>();
        seznamVysledky = vr.nactiVysledkyTabulka();

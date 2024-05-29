@@ -5,7 +5,7 @@
 package projektjakubdrozdide16;
 
 /**
- *
+ * Výjimka kontrolující jestli je soubor prázdný
  * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class EmptyFileException extends Exception{

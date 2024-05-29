@@ -10,13 +10,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * třída pro načtení výsledné tabulky ze souboru
  * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class VysledkyReader {
 
     
-    
+/**
+ * metoda pro načtení tabulky výsledků ze souboru
+ * @return
+ * @throws EmptyFileException 
+ */
 public ArrayList<VysledkyTabulka> nactiVysledkyTabulka() throws EmptyFileException {
         ArrayList<VysledkyTabulka> data = new ArrayList<>();
         try {

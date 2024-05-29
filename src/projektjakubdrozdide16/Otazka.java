@@ -7,8 +7,8 @@ package projektjakubdrozdide16;
 import java.util.ArrayList;
 
 /**
- *
- * @author drozd19100
+ * třída řešící otázku 
+ * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class Otazka {
     String otazka;
@@ -46,7 +46,10 @@ public class Otazka {
     public int getHodnota() {
         return hodnota;
     }
-
+/**
+ * metoda která vrací jestli je otázka typu otevřená nebo 1 z 3 možností
+ * @return 
+ */
     public int getTypOtazky() {
         long countSpatne = odpovedi.stream().filter(o -> !o.isSpravne()).count();
         if (countSpatne == 2) {

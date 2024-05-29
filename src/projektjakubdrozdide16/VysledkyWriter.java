@@ -11,11 +11,15 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
- * Vysledky writer zapisuji top 3 vysledky do souboru
+ * třída pro zapsaní top 3 vysledků do souboru
  * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class VysledkyWriter {
     
+    /**
+     * metoda pro vypsání top 3 výsledků do souboru
+     * @param data 
+     */
     public void zapisVysledkyTabulka(ArrayList<VysledkyTabulka> data) {
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Vysledky.txt")))) {
             for (int i = 0; i < Math.min(3, data.size()); i++) {

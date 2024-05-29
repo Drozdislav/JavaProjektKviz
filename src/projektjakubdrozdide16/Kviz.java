@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
- *JFRAME ve kerém se zobrazují otázky
- * @author drozd19100
+ * třída řešící obrazovku Kviz
+ * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class Kviz extends javax.swing.JFrame {
     GUImanager gui = new GUImanager();
@@ -35,30 +35,14 @@ public class Kviz extends javax.swing.JFrame {
         return jmenoUzivatele;
     }
   
-    
-
-    
-    /**
-     * Nacteni souboru text ktery je predany z tridy UvodniObrazovka.java
-     * @param Text 
-     */
-     
-    /**
-     * setter na skore
-     * @param skore 
-     */
     public void setSkore(int skore) {
         this.skore = skore;
         this.indexAktOtazky = 0;
     }
-    
-    
-    public Kviz() {
-        
-    }
+ 
     /**
-     * Creates new form Kviz
-     * @param data
+     * konstruktor zapínající obrazovku kviz
+     * @param data 
      */
     public Kviz(ArrayList<Otazka> data) {
         initComponents();
@@ -76,6 +60,9 @@ public class Kviz extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * metoda pomocí které meni velikost okna 
+     */
     private void resizeText() {
     int frameWidth = this.getWidth();
     int frameHeight = this.getHeight();
@@ -97,7 +84,10 @@ public class Kviz extends javax.swing.JFrame {
     odpovedOtevrenaOtazka.setFont(newFont);
 }
 
-
+    /**
+     * metoda která po zmáčknutí tlačítka opakovat resetne skore a vymaže selekce tlačítek
+     * @param n 
+     */
     public void resetProgressBar(int n) {
         ProgressBarKviz.setValue(n);
         buttonGroup1.clearSelection();
@@ -132,7 +122,11 @@ public class Kviz extends javax.swing.JFrame {
         Odpoved3.setText(o.odpovedi.get(2).textOdpovedi);
     }
     }
-     
+    /**
+     * metoda zobrazující výsledky
+     * @param skore
+     * @throws EmptyFileException 
+     */
     private void ZobrazVysledky(int skore) throws EmptyFileException {
         gui.vysledkyFrame(this, "Vysledky", skore);
     }                                     
@@ -326,9 +320,12 @@ public class Kviz extends javax.swing.JFrame {
     }//GEN-LAST:event_Odpoved3ActionPerformed
         
     private void odpovedOtevrenaOtazkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odpovedOtevrenaOtazkaActionPerformed
-       
+ 
     }//GEN-LAST:event_odpovedOtevrenaOtazkaActionPerformed
-
+/**
+ * při zmáčknutí tlačítka další při otevřené otázce
+ * @param evt 
+ */
     private void dalsiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dalsiButtonActionPerformed
     String userOdpoved = odpovedOtevrenaOtazka.getText();
     Otazka aktualniOtazka = list.get(indexAktOtazky);

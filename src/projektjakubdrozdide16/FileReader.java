@@ -8,16 +8,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 /**
- * 
- * @author drozd19100
+ * Třída načítající otázky ze souboru
+ * @author Jakub Drozd <drozd19100@zak.gvid.cz>
  */
 public class FileReader {
     String NazevKvizu;
     String radek;
     
-    
+    /**
+     * Metoda, která načítá otázky ze souboru
+     * @param soubor
+     * @return
+     * @throws EmptyFileException 
+     */
     public ArrayList<Otazka> nactiOtazky(String soubor) throws EmptyFileException {
         ArrayList<Otazka> data = new ArrayList<>();
         try {
