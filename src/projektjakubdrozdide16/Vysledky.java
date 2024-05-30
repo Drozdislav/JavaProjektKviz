@@ -4,9 +4,12 @@
  */
 package projektjakubdrozdide16;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 /**
  * Třída zobrazující obrazovku s výsledky
@@ -25,7 +28,12 @@ public class Vysledky extends javax.swing.JFrame {
      * Prázdný konstruktor
      */
     public Vysledky() {
-        initComponents();       
+    initComponents();
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+        public void componentResized(java.awt.event.ComponentEvent evt) {
+            resizeText();
+        }
+    });
     }
     /**
      * Pro zobrazení vysledné obrazovky a vypsání finálního skóre
@@ -40,7 +48,12 @@ public class Vysledky extends javax.swing.JFrame {
         
         
         PocetBoduCislo.setText(String.valueOf(hodnota));
-        
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+        public void componentResized(java.awt.event.ComponentEvent evt) {
+            resizeText();
+        }
+    });
+    
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -191,6 +204,35 @@ public class Vysledky extends javax.swing.JFrame {
     public void setSkoreUzivatele(int skoreUzivatele) {
         this.skoreUzivatele = skoreUzivatele;
     }
+    
+private void resizeText() {
+    int frameWidth = this.getWidth();
+    int frameHeight = this.getHeight();
+
+    float baseWidth = 400f; // Původní šířka rámu při návrhu
+    float baseHeight = 300f; // Původní výška rámu při návrhu
+
+    float widthRatio = frameWidth / baseWidth;
+    float heightRatio = frameHeight / baseHeight;
+
+    float newFontSize = 14f * Math.min(widthRatio, heightRatio); // Základní velikost písma 14
+
+    Font newFont = VysledkyNadpis.getFont().deriveFont(newFontSize);
+    VysledkyNadpis.setFont(newFont);
+    PocetBoduText.setFont(newFont);
+    PocetBoduCislo.setFont(newFont);
+    zkusZnovaTlacitko.setFont(newFont);
+    prvniMisto.setFont(newFont);
+    druheMisto.setFont(newFont);
+    tretiMisto.setFont(newFont);
+    jLabel5.setFont(newFont);
+
+    // Revalidate and repaint to ensure proper rendering
+    this.revalidate();
+    this.repaint();
+}
+
+
     
     
     

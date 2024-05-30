@@ -4,6 +4,7 @@
  */
 package projektjakubdrozdide16;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ public class UvodniObrazovka extends javax.swing.JFrame {
     String JmenoUzivatele;
     ArrayList<VysledkyTabulka> vysledkyList = new ArrayList<>();
     VysledkyTabulka vt = new VysledkyTabulka();
+    
 
     public String getJmenoUzivatele() {
         return JmenoUzivatele;
@@ -35,6 +37,14 @@ public class UvodniObrazovka extends javax.swing.JFrame {
      */
     public UvodniObrazovka() {
         initComponents();
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+        @Override
+        public void componentResized(java.awt.event.ComponentEvent evt) {
+            resizeText();
+        }
+        
+    });
+        
     }
 
     /**
@@ -86,7 +96,7 @@ public class UvodniObrazovka extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+                .addGap(104, 104, 104)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(VyberSouboruLabel)
@@ -153,6 +163,27 @@ public class UvodniObrazovka extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_NacistSouborTlacitkoActionPerformed
 
+    private void resizeText() {
+    int frameWidth = this.getWidth();
+    int frameHeight = this.getHeight();
+
+    float baseWidth = 400f; // Původní šířka rámu při návrhu
+    float baseHeight = 300f; // Původní výška rámu při návrhu
+
+    float widthRatio = frameWidth / baseWidth;
+    float heightRatio = frameHeight / baseHeight;
+
+    float newFontSize = 14f * Math.min(widthRatio, heightRatio); // Základní velikost písma 14
+
+    Font newFont = jLabel1.getFont().deriveFont(newFontSize);
+    jLabel1.setFont(newFont);
+    VyberSouboruLabel.setFont(newFont);
+    NacistSouborTlacitko.setFont(newFont);
+    jLabel2.setFont(newFont);
+    VyberSouboruText.setFont(newFont);
+    JmenoUzivateleTextField.setFont(newFont);
+}
+    
     private void VyberSouboruTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VyberSouboruTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_VyberSouboruTextActionPerformed

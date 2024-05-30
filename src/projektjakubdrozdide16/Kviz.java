@@ -5,6 +5,7 @@
 package projektjakubdrozdide16;
 
 import java.awt.Font;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.logging.Level;
@@ -50,7 +51,7 @@ public class Kviz extends javax.swing.JFrame {
         Collections.shuffle(list);
         ProgressBarKviz.setMaximum(list.size());
         
-        NazevKvizu.setText(fr.getNazevKvizu()); //NEFUGNUJE DIGGA!!!
+        NazevKvizu.setText(fr.getNazevKvizu());
         this.ZapisPomDoGUI(list.get(0));
         
             this.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -200,9 +201,6 @@ public class Kviz extends javax.swing.JFrame {
                                 .addComponent(ProgressBarKviz, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(64, 64, 64))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(156, 156, 156))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(dalsiButton)
                                 .addGap(39, 39, 39))))
                     .addGroup(layout.createSequentialGroup()
@@ -216,8 +214,12 @@ public class Kviz extends javax.swing.JFrame {
                                     .addComponent(Odpoved1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(TextOtazky, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addGap(0, 76, Short.MAX_VALUE)))))
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(odpovedOtevrenaOtazka, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,11 +329,12 @@ public class Kviz extends javax.swing.JFrame {
  * @param evt 
  */
     private void dalsiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dalsiButtonActionPerformed
-    String userOdpoved = odpovedOtevrenaOtazka.getText();
+    String userOdpoved = normalizujText(odpovedOtevrenaOtazka.getText());
     Otazka aktualniOtazka = list.get(indexAktOtazky);
 
     if (aktualniOtazka.getTypOtazky() == 2) { // otevřená otázka
-        if (userOdpoved.equals(aktualniOtazka.odpovedi.get(0).textOdpovedi)) {
+        String spravnaOdpoved = normalizujText(aktualniOtazka.odpovedi.get(0).textOdpovedi);
+        if (userOdpoved.equals(spravnaOdpoved)) {
             skore += aktualniOtazka.getHodnota();
         }
         indexAktOtazky += 1;
@@ -349,6 +352,14 @@ public class Kviz extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_dalsiButtonActionPerformed
 
+    private String normalizujText(String text) {
+    // Odstranění diakritiky a převedení na malá písmena
+    text = text.toLowerCase();
+    text = Normalizer.normalize(text, Normalizer.Form.NFD);
+    text = text.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+    return text;
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NazevKvizu;
     private javax.swing.JRadioButton Odpoved1;

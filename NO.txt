@@ -6,7 +6,6 @@ Hodnota:5
 Spravne:Modra
 Spatne:Ruzova
 Spatne:Purpurova
-# najebat ctvrty moznosti
 Otazka 1zN:Ktery tvar je hranaty?
 Hodnota:10
 Spatne:Kruh
@@ -25,3 +24,6 @@ Hodnota:10
 Spatne:Drozd
 Spravne:Koko
 Spatne:Buna
+Otevrena Otazka:Co je Drozdův nejoblíbenější předmět
+Spravne:programovani
+Hodnota:10
