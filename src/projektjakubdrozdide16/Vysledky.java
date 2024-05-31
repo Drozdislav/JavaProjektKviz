@@ -39,6 +39,7 @@ public class Vysledky extends javax.swing.JFrame {
      * Pro zobrazení vysledné obrazovky a vypsání finálního skóre
      * @param hodnota 
          * @param KvizFrame 
+     * @throws projektjakubdrozdide16.EmptyFileException 
      */
     public Vysledky(int hodnota, Kviz KvizFrame) throws EmptyFileException {
         initComponents();
@@ -49,6 +50,7 @@ public class Vysledky extends javax.swing.JFrame {
         
         PocetBoduCislo.setText(String.valueOf(hodnota));
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
+        @Override
         public void componentResized(java.awt.event.ComponentEvent evt) {
             resizeText();
         }
